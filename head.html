@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noble Hook | Premium Fishing Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Lobster&family=Syne:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --gold: #d4af37;
+        --gold-light: #f6d365;
+        --blue: #1d4ed8;
+        --light-blue: #38bdf8;
+        --dark: #06070b;
+        --dark-2: #0c1017;
+        --white: #ffffff;
+        --text: #cbd5e1;
+        --glass: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.08);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        --container-max: 1300px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        background: var(--dark);
+        color: var(--white);
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        min-width: 320px;
+      }
+
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(56, 189, 248, 0.12),
+            transparent 35%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(212, 175, 55, 0.1),
+            transparent 35%
+          ),
+          linear-gradient(180deg, #05060a, #0b1017, #06070b);
+      }
+
+      .bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.15;
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background: rgba(5, 7, 12, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 75px;
+        gap: 20px;
+      }
+
+      .logo {
+        font-family: "Lobster", cursive;
+        font-size: 32px;
+        color: var(--gold);
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        transition: var(--transition);
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      @media (hover: hover) {
+        .logo:hover {
+          transform: scale(1.03) rotate(-1deg);
+        }
+      }
+
+      .social-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .social-nav a {
+        position: relative;
+        padding: 8px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--white);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: var(--transition);
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .social-nav a::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.15),
+          rgba(56, 189, 248, 0.1)
+        );
+        z-index: 1;
+      }
+
+      @media (hover: hover) {
+        .social-nav a:hover::before {
+          opacity: 1;
+        }
+        .social-nav a:hover {
+          transform: translateY(-2px);
+          border-color: rgba(212, 175, 55, 0.3);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      .social-nav a span {
+        position: relative;
+        z-index: 2;
+      }
+
+      .lang-switcher-wrapper {
+        display: flex;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        padding: 3px;
+        border-radius: 10px;
+      }
+
+      .lang-btn {
+        background: transparent;
+        border: none;
+        color: #64748b;
+        padding: 5px 10px;
+        font-size: 13px;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .lang-btn.active {
+        background: linear-gradient(
+          135deg,
+          rgba(29, 78, 216, 0.25),
+          rgba(56, 189, 248, 0.25)
+        );
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        color: var(--gold);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+      }
+
+      .hero {
+        padding: 30px 0;
+      }
+
+      .hero-logo-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        perspective: 1500px;
+      }
+
+      .hero-logo {
+        width: 100%;
+        height: 380px;
+        border-radius: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+        background: linear-gradient(
+          145deg,
+          rgba(12, 16, 23, 0.8),
+          rgba(5, 7, 12, 0.95)
+        );
+        will-change: transform;
+        transform-style: preserve-3d;
+        transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      .hero-logo::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -150%;
+        width: 80%;
+        height: 100%;
+        transform: skewX(-25deg);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.12),
+          transparent
+        );
+        animation: shine 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      .hero-logo img {
+        max-width: 80%;
+        max-height: 80%;
+        object-fit: contain;
+        transform: translateZ(40px);
+        filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.85))
+          drop-shadow(0 0 15px rgba(212, 175, 55, 0.25));
+        pointer-events: none;
+      }
+
+      .main-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 30px;
+        padding-bottom: 40px;
+      }
+
+      aside {
+        position: sticky;
+        top: 95px;
+        height: fit-content;
+      }
+
+      .side-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .side-nav a {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 18px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--white);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+
+      .side-nav a::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: linear-gradient(
+          90deg,
+          rgba(212, 175, 55, 0.12),
+          transparent
+        );
+      }
+
+      @media (hover: hover) {
+        .side-nav a:hover::before {
+          opacity: 1;
+        }
+        .side-nav a:hover {
+          transform: translateX(6px);
+          border-color: rgba(212, 175, 55, 0.25);
+          box-shadow: -6px 6px 20px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      .side-nav span.arrow {
+        color: var(--gold);
+        font-weight: 800;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .premium-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition:
+          transform 0.1s ease-out,
+          border-color 0.3s,
+          box-shadow 0.3s;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      @media (hover: hover) {
+        .premium-card:hover {
+          border-color: rgba(212, 175, 55, 0.3);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .premium-card:hover img {
+          transform: scale(1.05);
+        }
+      }
+
+      .premium-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        pointer-events: none;
+        transition: transform 0.5s ease;
+      }
+
+      .card-text {
+        padding: 22px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-text h2 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: var(--gold);
+      }
+
+      .card-text p {
+        color: var(--text);
+        line-height: 1.5;
+        font-size: 14px;
+      }
+
+      .mini-track-container {
+        padding-bottom: 40px;
+      }
+
+      .mini-track {
+        width: 100%;
+        overflow: hidden;
+        background: #000;
+        padding: 14px 0;
+        border-radius: 16px;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+      }
+
+      .track-content {
+        display: flex;
+        width: max-content;
+        animation: track 25s linear infinite;
+      }
+
+      .track-content span {
+        white-space: nowrap;
+        font-family: "Montserrat", sans-serif;
+        font-size: 15px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--gold);
+        padding: 0 25px;
+      }
+
+      footer {
+        padding-bottom: 40px;
+      }
+
+      .footer-box {
+        background: #040506;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 50px 40px 25px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.2fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h4 {
+        margin-bottom: 16px;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .footer-col p,
+      .footer-col ul li a,
+      .footer-socials a {
+        color: #7b8794;
+        line-height: 1.6;
+        font-size: 14px;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-col a:hover {
+        color: var(--white);
+      }
+
+      .footer-socials {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-socials a {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .footer-socials a::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+
+      .footer-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        color: var(--white);
+        margin-bottom: 10px;
+        outline: none;
+        font-size: 14px;
+      }
+
+      .footer-input:focus {
+        border-color: var(--gold);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        color: #000;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn:hover {
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+      }
+
+      .footer-bottom {
+        padding-top: 25px;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        color: #475569;
+        font-size: 13px;
+      }
+
+      @keyframes track {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      @keyframes shine {
+        0% {
+          left: -150%;
+        }
+        50%,
+        100% {
+          left: 250%;
+        }
+      }
+
+      .lang-changing {
+        animation: langBlur 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes langBlur {
+        0% {
+          opacity: 0;
+          filter: blur(4px);
+          transform: translateY(4px);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0);
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 992px) {
+        .main-layout {
+          grid-template-columns: 1fr;
+        }
+
+        aside {
+          position: relative;
+          top: 0;
+        }
+
+        .side-nav {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+        }
+
+        .hero-logo {
+          height: 280px;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .header-wrapper {
+          flex-wrap: wrap;
+          height: auto;
+          padding: 12px 0;
+        }
+
+        .social-nav {
+          width: 100%;
+          justify-content: center;
+          order: 3;
+        }
+
+        .side-nav {
+          grid-template-columns: 1fr;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-box {
+          padding: 30px 20px 20px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 25px;
+        }
+
+        .hero-logo {
+          height: 180px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg"></div>
+
+    <header>
+      <div class="container header-wrapper">
+        <a href="index.html" class="logo">Noble Hook</a>
+
+        <div class="lang-switcher-wrapper">
+          <button class="lang-btn active" data-lang="ua">UA</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="pl">PL</button>
+        </div>
+
+        <nav class="social-nav">
+          <a
+            href="https://instagram.com/noblehook.ua"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>Instagram</span></a
+          >
+          <a
+            href="https://t.me/noblehookua"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>Telegram</span></a
+          >
+          <a
+            href="https://tiktok.com/@noblehook.ua"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>TikTok</span></a
+          >
+          <a
+            href="https://t.me/your_bot"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>Bot</span></a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-logo-wrap">
+          <div class="hero-logo">
+            <img src="logo.png" alt="Noble Hook Logo" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container main-layout">
+      <aside>
+        <nav class="side-nav">
+          <a href="about.html"
+            ><span data-translate-key="nav_about">Про компанію</span
+            ><span class="arrow">→</span></a
+          >
+          <a href="shop.html"
+            ><span data-translate-key="nav_shop">Інтернет магазин</span
+            ><span class="arrow">→</span></a
+          >
+          <a href="delivery.html"
+            ><span data-translate-key="nav_shipping">Оплата і доставка</span
+            ><span class="arrow">→</span></a
+          >
+          <a href="contacts.html"
+            ><span data-translate-key="nav_contacts">Контакти</span
+            ><span class="arrow">→</span></a
+          >
+        </nav>
+      </aside>
+
+      <main class="content-grid">
+        <a href="shop.html" class="premium-card">
+          <img src="pict1.png" alt="News Image" />
+          <div class="card-text">
+            <h2 data-translate-key="card1_title">Новини</h2>
+            <p data-translate-key="card1_desc">
+              Відчуй безкомпромісну якість Noble Hook. Преміальні матеріали для
+              справжніх професіоналів.
+            </p>
+          </div>
+        </a>
+
+        <a href="loyalty.html" class="premium-card">
+          <img src="pict2.png" alt="Loyalty Program Image" />
+          <div class="card-text">
+            <h2 data-translate-key="card2_title">Програма лояльності</h2>
+            <p data-translate-key="card2_desc">
+              Ставайте частиною нашого клубу, накопичуйте бонуси та отримуйте
+              ексклюзивні пропозиції для клієнтів.
+            </p>
+          </div>
+        </a>
+      </main>
+    </div>
+
+    <div class="container mini-track-container">
+      <div class="mini-track">
+        <div class="track-content">
+          <span
+            >NOBLE HOOK • PREMIUM FISHING • ELITE GEAR • PROFESSIONAL CHOICE •
+          </span>
+          <span
+            >NOBLE HOOK • PREMIUM FISHING • ELITE GEAR • PROFESSIONAL CHOICE •
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-box">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <a
+                href="index.html"
+                class="logo"
+                style="display: inline-block; margin-bottom: 12px"
+                >Noble Hook</a
+              >
+              <p data-translate-key="footer_about">
+                Ми створюємо культуру сучасної риболовлі. Якість, якій довіряють
+                тисячі.
+              </p>
+            </div>
+
+            <div class="footer-col">
+              <h4 data-translate-key="footer_clients">Клієнтам</h4>
+              <ul>
+                <li>
+                  <a href="delivery.html" data-translate-key="nav_shipping"
+                    >Оплата і доставка</a
+                  >
+                </li>
+                <li>
+                  <a href="about.html" data-translate-key="nav_about"
+                    >Про компанію</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4 data-translate-key="footer_socials">Наші соц мережі</h4>
+              <div class="footer-socials">
+                <a
+                  href="https://t.me/noblehookua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Telegram</a
+                >
+                <a
+                  href="https://instagram.com/noblehook.ua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Instagram</a
+                >
+                <a
+                  href="https://tiktok.com/@noblehook.ua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >TikTok</a
+                >
+                <a
+                  href="https://t.me/your_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Telegram Bot</a
+                >
+              </div>
+            </div>
+
+            <div class="footer-col">
+              <h4 data-translate-key="footer_sub">Підписка</h4>
+              <form id="subscribeForm">
+                <input
+                  type="email"
+                  class="footer-input"
+                  placeholder="Email"
+                  required
+                />
+                <button
+                  type="submit"
+                  class="btn"
+                  data-translate-key="footer_btn"
+                >
+                  ПІДПИСАТИСЯ
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            &copy; 2026 NOBLE HOOK.
+            <span data-translate-key="footer_rights">ВСІ ПРАВА ЗАХИЩЕНІ.</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const PAGE_TITLE = "Noble Hook | Premium Fishing Store";
+
+      const translations = {
+        ua: {
+          page_title: PAGE_TITLE,
+          nav_about: "Про компанію",
+          nav_shop: "Інтернет магазин",
+          nav_shipping: "Оплата і доставка",
+          nav_contacts: "Контакти",
+          card1_title: "Новини",
+          card1_desc:
+            "Відчуй безкомпромісну якість Noble Hook. Преміальні матеріали для справжніх професіоналів.",
+          card2_title: "Програма лояльності",
+          card2_desc:
+            "Ставайте частиною нашого клубу, накопичуйте бонуси та отримуйте ексклюзивні пропозиції для клієнтів.",
+          footer_about:
+            "Ми створюємо культуру сучасної риболовлі. Якість, якій довіряють тисячі.",
+          footer_clients: "Клієнтам",
+          footer_socials: "Наші соц мережі",
+          footer_sub: "Підписка",
+          footer_btn: "ПІДПИСАТИСЯ",
+          footer_rights: "ВСІ ПРАВА ЗАХИЩЕНІ.",
+          subscribed: "Ви успішно підписалися!",
+        },
+        en: {
+          page_title: PAGE_TITLE,
+          nav_about: "About Company",
+          nav_shop: "Online Store",
+          nav_shipping: "Shipping & Payment",
+          nav_contacts: "Contacts",
+          card1_title: "New Arrivals",
+          card1_desc:
+            "Experience uncompromising Noble Hook quality. Premium materials made for true professionals.",
+          card2_title: "Loyalty Program",
+          card2_desc:
+            "Join our exclusive club, accumulate points, and unlock premium rewards tailored for true anglers.",
+          footer_about:
+            "We create a modern fishing culture. Quality trusted by thousands.",
+          footer_clients: "Customers",
+          footer_socials: "Our Social Media",
+          footer_sub: "Newsletter",
+          footer_btn: "SUBSCRIBE",
+          footer_rights: "ALL RIGHTS RESERVED.",
+          subscribed: "You have successfully subscribed!",
+        },
+        pl: {
+          page_title: PAGE_TITLE,
+          nav_about: "O firmie",
+          nav_shop: "Sklep internetowy",
+          nav_shipping: "Płatność i dostawa",
+          nav_contacts: "Kontakt",
+          card1_title: "Nowości",
+          card1_desc:
+            "Poznaj bezkompromisową jakość Noble Hook. Materiały premium stworzone dla prawdziwych profesjonalistów.",
+          card2_title: "Program lojalnościowy",
+          card2_desc:
+            "Dołącz do naszego klubu, zbieraj punkty i odbieraj ekskluzywne nagrody stworzone dla prawdziwych wędkarzy.",
+          footer_about:
+            "Tworzymy nowoczesną kulturę wędkarstwa. Jakość, której ufają tysiące.",
+          footer_clients: "Dla klientów",
+          footer_socials: "Nasze Social Media",
+          footer_sub: "Subskrypcja",
+          footer_btn: "SUBSKRYBUJ",
+          footer_rights: "WSZYSTKIE PRAWA ZASTRZEŻONE.",
+          subscribed: "Pomyślnie zasubskrybowano!",
+        },
+      };
+
+      const DOM = {
+        langButtons: document.querySelectorAll(".lang-btn"),
+        translatable: document.querySelectorAll("[data-translate-key]"),
+        heroLogo: document.querySelector(".hero-logo"),
+        cards: document.querySelectorAll(".premium-card"),
+        subscribeForm: document.querySelector("#subscribeForm"),
+      };
+
+      let currentLanguage = localStorage.getItem("noble_lang") || "ua";
+
+      if (!translations[currentLanguage]) {
+        currentLanguage = "ua";
+      }
+
+      function translatePage(lang) {
+        if (!translations[lang]) return;
+
+        currentLanguage = lang;
+
+        DOM.translatable.forEach((el) => {
+          const key = el.getAttribute("data-translate-key");
+          const localizedText = translations[lang][key];
+
+          if (localizedText) {
+            el.textContent = localizedText;
+          }
+        });
+
+        document.title = translations[lang].page_title;
+        document.documentElement.lang = lang === "ua" ? "uk" : lang;
+        localStorage.setItem("noble_lang", lang);
+
+        DOM.langButtons.forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang") === lang,
+          );
+        });
+      }
+
+      DOM.langButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetLang = btn.getAttribute("data-lang");
+          if (currentLanguage === targetLang) return;
+
+          document.body.classList.add("lang-changing");
+          translatePage(targetLang);
+
+          setTimeout(
+            () => document.body.classList.remove("lang-changing"),
+            350,
+          );
+        });
+      });
+
+      if (DOM.subscribeForm) {
+        DOM.subscribeForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          alert(translations[currentLanguage].subscribed);
+          DOM.subscribeForm.reset();
+        });
+      }
+
+      const isHoverable = window.matchMedia("(hover: hover)").matches;
+
+      let transformTicker = false;
+      if (DOM.heroLogo && isHoverable) {
+        document.addEventListener("mousemove", (e) => {
+          if (!transformTicker) {
+            window.requestAnimationFrame(() => {
+              const offsetX = (window.innerWidth / 2 - e.clientX) / 45;
+              const offsetY = (window.innerHeight / 2 - e.clientY) / 45;
+              DOM.heroLogo.style.transform = `rotateY(${-offsetX}deg) rotateX(${offsetY}deg)`;
+              transformTicker = false;
+            });
+            transformTicker = true;
+          }
+        });
+      }
+
+      if (isHoverable) {
+        DOM.cards.forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const coordX = e.clientX - rect.left;
+            const coordY = e.clientY - rect.top;
+
+            const angleX = (coordY - rect.height / 2) / 15;
+            const angleY = (rect.width / 2 - coordX) / 15;
+
+            card.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.02)`;
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+          });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        translatePage(currentLanguage);
+      });
+    </script>
+  </body>
+</html>

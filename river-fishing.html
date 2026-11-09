@@ -1,0 +1,3104 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Noble Hook | Річкова риболовля</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --gold: #d4af37;
+        --gold-light: #f6d365;
+        --blue: #1d4ed8;
+        --light-blue: #38bdf8;
+        --dark: #06070b;
+        --white: #ffffff;
+        --text: #cbd5e1;
+        --text-gray: #7b8794;
+        --muted: #64748b;
+        --border: rgba(255, 255, 255, 0.08);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        --container-max: 1300px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        background: var(--dark);
+        color: var(--white);
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        min-width: 320px;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      a {
+        overflow-wrap: anywhere;
+      }
+
+      .bg {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(56, 189, 248, 0.12),
+            transparent 35%
+          ),
+          radial-gradient(
+            circle at bottom right,
+            rgba(212, 175, 55, 0.1),
+            transparent 35%
+          ),
+          linear-gradient(180deg, #05060a, #0b1017, #06070b);
+      }
+
+      .bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.15;
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      }
+
+      .container {
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background: rgba(5, 7, 12, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .header-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 75px;
+        gap: 20px;
+      }
+
+      .logo {
+        font-family: "Lobster", cursive;
+        font-size: 32px;
+        color: var(--gold);
+        text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        transition: var(--transition);
+        text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      @media (hover: hover) {
+        .logo:hover {
+          transform: scale(1.03) rotate(-1deg);
+        }
+      }
+
+      .social-nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .social-nav a {
+        position: relative;
+        padding: 8px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--white);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: var(--transition);
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .social-nav a::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.15),
+          rgba(56, 189, 248, 0.1)
+        );
+        z-index: 1;
+      }
+
+      @media (hover: hover) {
+        .social-nav a:hover::before {
+          opacity: 1;
+        }
+        .social-nav a:hover {
+          transform: translateY(-2px);
+          border-color: rgba(212, 175, 55, 0.3);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+      .social-nav a span {
+        position: relative;
+        z-index: 2;
+      }
+
+      .lang-switcher-wrapper {
+        display: flex;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        padding: 3px;
+        border-radius: 10px;
+      }
+
+      .lang-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--muted);
+        padding: 5px 10px;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: inherit;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .lang-btn.active {
+        background: linear-gradient(
+          135deg,
+          rgba(29, 78, 216, 0.25),
+          rgba(56, 189, 248, 0.25)
+        );
+        border-color: rgba(56, 189, 248, 0.4);
+        color: var(--gold);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+      }
+
+      .page-layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 30px;
+        padding-top: 30px;
+        padding-bottom: 40px;
+        align-items: start;
+      }
+
+      aside {
+        position: sticky;
+        top: 95px;
+        height: fit-content;
+      }
+
+      .side-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .side-nav a {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 18px;
+        border-radius: 14px;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--white);
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .side-nav a::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: linear-gradient(
+          90deg,
+          rgba(212, 175, 55, 0.12),
+          transparent
+        );
+      }
+
+      @media (hover: hover) {
+        .side-nav a:hover::before {
+          opacity: 1;
+        }
+        .side-nav a:hover {
+          transform: translateX(6px);
+          border-color: rgba(212, 175, 55, 0.25);
+          box-shadow: -6px 6px 20px rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      .side-nav a.active {
+        color: var(--gold);
+        border-color: rgba(212, 175, 55, 0.35);
+        background: rgba(212, 175, 55, 0.04);
+      }
+
+      .side-nav span {
+        position: relative;
+        z-index: 2;
+      }
+
+      .side-nav span.arrow {
+        color: var(--gold);
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      main {
+        min-width: 0;
+      }
+
+      .page-title {
+        margin-bottom: 12px;
+        color: var(--gold);
+        font-family: "Montserrat", sans-serif;
+        font-size: 38px;
+        font-weight: 900;
+        line-height: 1.15;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .page-description {
+        max-width: 800px;
+        margin-bottom: 30px;
+        color: var(--text);
+        line-height: 1.7;
+        font-size: 15px;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .product-table {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        border-radius: 20px;
+        background: rgba(12, 16, 23, 0.72);
+        border: 1px solid var(--border);
+        transition:
+          border-color 0.3s,
+          box-shadow 0.3s;
+      }
+
+      @media (hover: hover) {
+        .product-table:hover {
+          border-color: rgba(212, 175, 55, 0.35);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        .product-table:hover .product-image::after {
+          left: 150%;
+        }
+        .product-table:hover .product-image img {
+          transform: scale(1.06);
+        }
+        .product-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+      }
+
+      .product-image {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 250px;
+        padding: 22px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle, rgba(56, 189, 248, 0.08), transparent 65%),
+          #090d13;
+      }
+
+      .product-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        transform: skewX(-25deg);
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.7s;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 0.5s ease;
+        filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.6));
+      }
+
+      .product-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 22px;
+      }
+
+      .product-category {
+        margin-bottom: 8px;
+        color: var(--light-blue);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .product-title {
+        margin-bottom: 10px;
+        color: var(--white);
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+
+      .product-description {
+        margin-bottom: 18px;
+        color: var(--text);
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      .product-specs {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .spec {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .spec strong {
+        color: var(--text);
+        text-align: right;
+      }
+
+      .product-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .product-price {
+        color: var(--gold);
+        font-family: "Montserrat", sans-serif;
+        font-size: 21px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .product-btn {
+        padding: 11px 20px;
+        color: #000;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        border: none;
+        border-radius: 12px;
+        font-family: inherit;
+        font-weight: 800;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .mini-track-container {
+        padding-bottom: 40px;
+      }
+
+      .mini-track {
+        width: 100%;
+        overflow: hidden;
+        background: #000;
+        padding: 14px 0;
+        border-radius: 16px;
+        border: 1px solid rgba(212, 175, 55, 0.25);
+      }
+
+      .track-content {
+        display: flex;
+        width: max-content;
+        animation: track 25s linear infinite;
+      }
+
+      .track-content span {
+        white-space: nowrap;
+        font-family: "Montserrat", sans-serif;
+        font-size: 15px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--gold);
+        padding: 0 25px;
+      }
+
+      @keyframes track {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      footer {
+        padding-bottom: 40px;
+      }
+
+      .footer-box {
+        background: #040506;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 50px 40px 25px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.2fr 1.5fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col {
+        min-width: 0;
+      }
+
+      .footer-col h4 {
+        margin-bottom: 16px;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .footer-col p,
+      .footer-col ul li a,
+      .footer-socials a {
+        color: var(--text-gray);
+        line-height: 1.6;
+        font-size: 14px;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-col a:hover {
+        color: var(--white);
+      }
+
+      .footer-socials {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-socials a {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .footer-socials a::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+
+      .footer-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        color: var(--white);
+        font-family: inherit;
+        margin-bottom: 10px;
+        outline: none;
+        font-size: 16px; 
+      }
+
+      .footer-input:focus {
+        border-color: var(--gold);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        color: #000;
+        font-family: inherit;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn:hover {
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+      }
+
+      .footer-bottom {
+        padding-top: 25px;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        color: #475569;
+        font-size: 13px;
+      }
+
+      .lang-changing {
+        animation: langFade 0.35s ease;
+      }
+
+      @keyframes langFade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .page-layout {
+          grid-template-columns: 240px minmax(0, 1fr);
+          gap: 24px;
+        }
+
+        .page-title {
+          font-size: 32px;
+        }
+
+        .products-grid {
+          gap: 16px;
+        }
+
+        .product-image {
+          height: 220px;
+        }
+
+        .product-content {
+          padding: 18px;
+        }
+
+        .product-title {
+          font-size: 18px;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .page-layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        aside {
+          position: static;
+        }
+
+        .side-nav {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 650px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        .header-wrapper {
+          flex-wrap: wrap;
+          height: auto;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          gap: 12px;
+        }
+
+        .social-nav {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+          order: 3;
+        }
+
+        .page-layout {
+          padding-top: 20px;
+          padding-bottom: 28px;
+        }
+
+        .side-nav {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 10px;
+        }
+
+        .page-title {
+          font-size: 26px;
+        }
+
+        .page-description {
+          font-size: 14px;
+          margin-bottom: 22px;
+        }
+
+        .products-grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
+        }
+
+        .product-image {
+          height: 230px;
+        }
+
+        .track-content span {
+          font-size: 13px;
+          padding: 0 18px;
+        }
+
+        .mini-track-container {
+          padding-bottom: 28px;
+        }
+
+        footer {
+          padding-bottom: 28px;
+        }
+
+        .footer-box {
+          padding: 30px 20px 20px;
+          border-radius: 20px;
+        }
+
+        .footer-grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 25px;
+          margin-bottom: 28px;
+        }
+      }
+
+      /* Дуже малі екрани */
+      @media (max-width: 380px) {
+        .logo {
+          font-size: 28px;
+        }
+
+        .social-nav a {
+          padding: 7px 10px;
+          font-size: 12px;
+        }
+
+        .product-image {
+          height: 200px;
+        }
+
+        .page-title {
+          font-size: 23px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg"></div>
+
+    <header>
+      <div class="container header-wrapper">
+        <a href="index.html" class="logo">Noble Hook</a>
+
+        <div class="lang-switcher-wrapper">
+          <button class="lang-btn active" data-lang="ua">UA</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="pl">PL</button>
+        </div>
+
+        <nav class="social-nav">
+          <a
+            href="https://instagram.com/noblehook.ua"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>Instagram</span></a
+          >
+          <a
+            href="https://t.me/noblehookua"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>Telegram</span></a
+          >
+          <a
+            href="https://tiktok.com/@noblehook.ua"
+            target="_blank"
+            rel="noopener noreferrer"
+            ><span>TikTok</span></a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <div class="container page-layout">
+      <aside>
+        <nav class="side-nav">
+          <a href="about.html">
+            <span>Про компанію</span>
+            <span class="arrow">→</span>
+          </a>
+
+          <a href="shop.html" class="active">
+            <span>Інтернет магазин</span>
+            <span class="arrow">→</span>
+          </a>
+
+          <a href="delivery.html">
+            <span>Оплата і доставка</span>
+            <span class="arrow">→</span>
+          </a>
+
+          <a href="contacts.html">
+            <span>Контакти</span>
+            <span class="arrow">→</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main>
+        <h1 class="page-title">Річкова риболовля</h1>
+
+        <p class="page-description">
+          Професійні монтажі та перевірене спорядження для річкової риболовлі.
+          Обирайте готові рішення Noble Hook для ловлі коропа, щуки, судака,
+          окуня та іншої прісноводної риби.
+        </p>
+
+        <div class="products-grid">
+          <!-- PRODUCT 1 -->
+          <div class="product-table">
+            <div class="product-image">
+              <img src="river_product_1.png" alt="Монтаж для коропа" />
+            </div>
+
+            <div class="product-content">
+              <span class="product-category"> Річкова риболовля </span>
+
+              <h2 class="product-title">Noble Carp Master Rig</h2>
+
+              <p class="product-description">
+                Надійний короповий монтаж для донної ловлі на річках та
+                водоймах.
+              </p>
+
+              <div class="product-specs">
+                <div class="spec">
+                  <span>Ліска</span>
+                  <strong>0.35 мм</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Гачок</span>
+                  <strong>№6</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Тип</span>
+                  <strong>Короповий монтаж</strong>
+                </div>
+              </div>
+
+              <div class="product-bottom">
+                <span class="product-price"> 150 грн </span>
+
+                <button class="product-btn">Купити</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRODUCT 2 -->
+          <div class="product-table">
+            <div class="product-image">
+              <img src="river_product_2.png" alt="Монтаж для щуки" />
+            </div>
+
+            <div class="product-content">
+              <span class="product-category"> Річкова риболовля </span>
+
+              <h2 class="product-title">Noble Pike Strike</h2>
+
+              <p class="product-description">
+                Посилений монтаж для ловлі щуки на річках та великих водоймах.
+              </p>
+
+              <div class="product-specs">
+                <div class="spec">
+                  <span>Поводок</span>
+                  <strong>30 см</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Гачок</span>
+                  <strong>№2</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Тип</span>
+                  <strong>Щучий монтаж</strong>
+                </div>
+              </div>
+
+              <div class="product-bottom">
+                <span class="product-price"> 190 грн </span>
+
+                <button class="product-btn">Купити</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-table">
+            <div class="product-image">
+              <img src="river_product_3.png" alt="Монтаж для судака" />
+            </div>
+
+            <div class="product-content">
+              <span class="product-category"> Річкова риболовля </span>
+
+              <h2 class="product-title">Noble Zander Pro</h2>
+
+              <p class="product-description">
+                Чутливий монтаж для ефективної ловлі судака на течії.
+              </p>
+
+              <div class="product-specs">
+                <div class="spec">
+                  <span>Ліска</span>
+                  <strong>0.30 мм</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Гачок</span>
+                  <strong>№4</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Тип</span>
+                  <strong>Річковий монтаж</strong>
+                </div>
+              </div>
+
+              <div class="product-bottom">
+                <span class="product-price"> 170 грн </span>
+
+                <button class="product-btn">Купити</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-table">
+            <div class="product-image">
+              <img src="river_product_4.png" alt="Монтаж для окуня" />
+            </div>
+
+            <div class="product-content">
+              <span class="product-category"> Річкова риболовля </span>
+
+              <h2 class="product-title">Noble Perch Flash</h2>
+
+              <p class="product-description">
+                Легкий та універсальний монтаж для активної ловлі окуня.
+              </p>
+
+              <div class="product-specs">
+                <div class="spec">
+                  <span>Ліска</span>
+                  <strong>0.20 мм</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Гачок</span>
+                  <strong>№8</strong>
+                </div>
+
+                <div class="spec">
+                  <span>Тип</span>
+                  <strong>Спортивний</strong>
+                </div>
+              </div>
+
+              <div class="product-bottom">
+                <span class="product-price"> 130 грн </span>
+
+                <button class="product-btn">Купити</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="container mini-track-container">
+      <div class="mini-track">
+        <div class="track-content">
+          <span>
+            NOBLE HOOK • RIVER FISHING • PREMIUM GEAR • PROFESSIONAL CHOICE •
+          </span>
+
+          <span>
+            NOBLE HOOK • RIVER FISHING • PREMIUM GEAR • PROFESSIONAL CHOICE •
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="footer-box">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <a
+                href="index.html"
+                class="logo"
+                style="display: inline-block; margin-bottom: 12px"
+              >
+                Noble Hook
+              </a>
+
+              <p>
+                Ми створюємо культуру сучасної риболовлі. Якість, якій довіряють
+                тисячі.
+              </p>
+            </div>
+
+            <div class="footer-col">
+              <h4>Клієнтам</h4>
+
+              <ul>
+                <li>
+                  <a href="delivery.html"> Оплата і доставка </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Наші соц мережі</h4>
+
+              <div class="footer-socials">
+                <a
+                  href="https://t.me/noblehookua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Telegram
+                </a>
+
+                <a
+                  href="https://instagram.com/noblehook.ua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+
+                <a
+                  href="https://tiktok.com/@noblehook.ua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  TikTok
+                </a>
+              </div>
+            </div>
+
+            <div class="footer-col">
+              <h4>Підписка</h4>
+
+              <form id="subscribeForm">
+                <input
+                  type="email"
+                  class="footer-input"
+                  placeholder="Email"
+                  required
+                />
+
+                <button type="submit" class="btn">ПІДПИСАТИСЯ</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            © 2026 NOBLE HOOK. ВСІ ПРАВА ЗАХИЩЕНІ.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+
+      const translations = {
+        ua: {
+          pageTitle: "Річкова риболовля",
+
+          pageDescription:
+            "Професійні монтажі та перевірене спорядження для річкової риболовлі. Обирайте готові рішення Noble Hook для ловлі коропа, щуки, судака, окуня та іншої прісноводної риби.",
+
+          about: "Про компанію",
+          shop: "Інтернет магазин",
+          delivery: "Оплата і доставка",
+          contacts: "Контакти",
+
+          category: "Річкова риболовля",
+
+          buy: "Купити",
+
+          line: "Ліска",
+          hook: "Гачок",
+          hooks: "Гачки",
+          leader: "Поводок",
+          type: "Тип",
+
+          carpRig: "Короповий монтаж",
+          pikeRig: "Щучий монтаж",
+          riverRig: "Річковий монтаж",
+          sport: "Спортивний",
+
+          // Назви (бренд) лишаються однаковими в усіх мовах — не перекладаються.
+          product1Description:
+            "Надійний короповий монтаж для донної ловлі на річках та водоймах.",
+          product2Description:
+            "Посилений монтаж для ловлі щуки на річках та великих водоймах.",
+          product3Description:
+            "Чутливий монтаж для ефективної ловлі судака на течії.",
+          product4Description:
+            "Легкий та універсальний монтаж для активної ловлі окуня.",
+
+          clients: "Клієнтам",
+          social: "Наші соц мережі",
+          subscription: "Підписка",
+
+          footerDescription:
+            "Ми створюємо культуру сучасної риболовлі. Якість, якій довіряють тисячі.",
+
+          footerBottom: "© 2026 NOBLE HOOK. ВСІ ПРАВА ЗАХИЩЕНІ.",
+
+          subscribe: "ПІДПИСАТИСЯ",
+          email: "Email",
+
+          subscribed: "Ви успішно підписалися!",
+        },
+
+        en: {
+          pageTitle: "River Fishing",
+
+          pageDescription:
+            "Professional rigs and proven gear for river fishing. Choose ready-made Noble Hook solutions for carp, pike, zander, perch and other freshwater fish.",
+
+          about: "About Company",
+          shop: "Online Shop",
+          delivery: "Payment & Delivery",
+          contacts: "Contacts",
+
+          category: "River Fishing",
+
+          buy: "Buy",
+
+          line: "Line",
+          hook: "Hook",
+          hooks: "Hooks",
+          leader: "Leader",
+          type: "Type",
+
+          carpRig: "Carp Rig",
+          pikeRig: "Pike Rig",
+          riverRig: "River Rig",
+          sport: "Sport",
+
+          product1Description:
+            "Reliable carp rig for bottom fishing on rivers and lakes.",
+          product2Description:
+            "Reinforced rig for pike fishing on rivers and large bodies of water.",
+          product3Description:
+            "Sensitive rig for effective zander fishing in current.",
+          product4Description:
+            "Lightweight and versatile rig for active perch fishing.",
+
+          clients: "For Customers",
+          social: "Our Socials",
+          subscription: "Subscription",
+
+          footerDescription:
+            "We create the culture of modern fishing. Quality trusted by thousands.",
+
+          footerBottom: "© 2026 NOBLE HOOK. ALL RIGHTS RESERVED.",
+
+          subscribe: "SUBSCRIBE",
+          email: "Email",
+
+          subscribed: "You have successfully subscribed!",
+        },
+
+        pl: {
+          pageTitle: "Wędkarstwo Rzeczne",
+
+          pageDescription:
+            "Profesjonalne zestawy i sprawdzony sprzęt do wędkarstwa rzecznego. Wybierz gotowe rozwiązania Noble Hook do połowu karpia, szczupaka, sandacza, okonia i innych ryb słodkowodnych.",
+
+          about: "O Firmie",
+          shop: "Sklep Internetowy",
+          delivery: "Płatność i Dostawa",
+          contacts: "Kontakt",
+
+          category: "Wędkarstwo Rzeczne",
+
+          buy: "Kup",
+
+          line: "Żyłka",
+          hook: "Haczyk",
+          hooks: "Haczyki",
+          leader: "Przypon",
+          type: "Typ",
+
+          carpRig: "Zestaw karpiowy",
+          pikeRig: "Zestaw szczupakowy",
+          riverRig: "Zestaw rzeczny",
+          sport: "Sportowy",
+
+          product1Description:
+            "Niezawodny zestaw karpiowy do łowienia dennego na rzekach i zbiornikach.",
+          product2Description:
+            "Wzmocniony zestaw do połowu szczupaka na rzekach i dużych zbiornikach.",
+          product3Description:
+            "Czuły zestaw do skutecznego połowu sandacza w nurcie.",
+          product4Description:
+            "Lekki i uniwersalny zestaw do aktywnego połowu okonia.",
+
+          clients: "Dla Klientów",
+          social: "Nasze Social Media",
+          subscription: "Subskrypcja",
+
+          footerDescription:
+            "Tworzymy kulturę nowoczesnego wędkarstwa. Jakość, której ufa tysiące klientów.",
+
+          footerBottom: "© 2026 NOBLE HOOK. WSZELKIE PRAWA ZASTRZEŻONE.",
+
+          subscribe: "SUBSKRYBUJ",
+          email: "Email",
+
+          subscribed: "Pomyślnie zasubskrybowano!",
+        },
+      };
+
+
+      let currentLanguage = "ua";
+      try {
+        currentLanguage = localStorage.getItem("nobleHookLanguage") || "ua";
+      } catch (e) {}
+
+      if (!translations[currentLanguage]) {
+        currentLanguage = "ua";
+      }
+
+      function changeLanguage(lang) {
+        if (!translations[lang]) return;
+
+        currentLanguage = lang;
+
+        const t = translations[lang];
+
+        document.documentElement.lang = lang === "ua" ? "uk" : lang;
+        document.title = `Noble Hook | ${t.pageTitle}`;
+
+        const pageTitleEl = document.querySelector(".page-title");
+        if (pageTitleEl) pageTitleEl.textContent = t.pageTitle;
+
+        const pageDescriptionEl = document.querySelector(".page-description");
+        if (pageDescriptionEl)
+          pageDescriptionEl.textContent = t.pageDescription;
+
+
+        const sideLinks = document.querySelectorAll(".side-nav a");
+
+        if (sideLinks[0])
+          sideLinks[0].querySelector("span:first-child").textContent = t.about;
+        if (sideLinks[1])
+          sideLinks[1].querySelector("span:first-child").textContent = t.shop;
+        if (sideLinks[2])
+          sideLinks[2].querySelector("span:first-child").textContent =
+            t.delivery;
+        if (sideLinks[3])
+          sideLinks[3].querySelector("span:first-child").textContent =
+            t.contacts;
+
+
+        const descriptionByIndex = [
+          t.product1Description,
+          t.product2Description,
+          t.product3Description,
+          t.product4Description,
+        ];
+
+        document
+          .querySelectorAll(".product-table")
+          .forEach((product, index) => {
+            const category = product.querySelector(".product-category");
+            if (category) category.textContent = t.category;
+
+            const description = product.querySelector(".product-description");
+            if (description && descriptionByIndex[index]) {
+              description.textContent = descriptionByIndex[index];
+            }
+
+            product.querySelectorAll(".spec span").forEach((label) => {
+              const text = label.textContent;
+
+              if (
+                text.includes("Ліска") ||
+                text.includes("Line") ||
+                text.includes("Żyłka")
+              ) {
+                label.textContent = t.line;
+              }
+
+              if (
+                text.includes("Гачки") ||
+                text.includes("Hooks") ||
+                text.includes("Haczyki")
+              ) {
+                label.textContent = t.hooks;
+              } else if (
+                text.includes("Гачок") ||
+                text.includes("Hook") ||
+                text.includes("Haczyk")
+              ) {
+                label.textContent = t.hook;
+              }
+
+              if (
+                text.includes("Поводок") ||
+                text.includes("Leader") ||
+                text.includes("Przypon")
+              ) {
+                label.textContent = t.leader;
+              }
+
+              if (
+                text.includes("Тип") ||
+                text.includes("Type") ||
+                text.includes("Typ")
+              ) {
+                label.textContent = t.type;
+              }
+            });
+
+            product.querySelectorAll(".spec strong").forEach((value) => {
+              const text = value.textContent;
+
+              if (
+                text.includes("Короповий монтаж") ||
+                text.includes("Carp Rig") ||
+                text.includes("Zestaw karpiowy")
+              ) {
+                value.textContent = t.carpRig;
+              }
+
+              if (
+                text.includes("Щучий монтаж") ||
+                text.includes("Pike Rig") ||
+                text.includes("Zestaw szczupakowy")
+              ) {
+                value.textContent = t.pikeRig;
+              }
+
+              if (
+                text.includes("Річковий монтаж") ||
+                text.includes("River Rig") ||
+                text.includes("Zestaw rzeczny")
+              ) {
+                value.textContent = t.riverRig;
+              }
+
+              if (
+                text.includes("Спортивний") ||
+                text.includes("Sport") ||
+                text.includes("Sportowy")
+              ) {
+                value.textContent = t.sport;
+              }
+            });
+          });
+
+        document.querySelectorAll(".product-btn").forEach((button) => {
+          if (!button.dataset.added) {
+            button.textContent = t.buy;
+          }
+        });
+
+
+        document.querySelectorAll(".track-content span").forEach((span) => {
+          span.textContent =
+            lang === "ua"
+              ? "NOBLE HOOK • РІЧКОВА РИБОЛОВЛЯ • ПРЕМІАЛЬНЕ СПОРЯДЖЕННЯ • ПРОФЕСІЙНИЙ ВИБІР •"
+              : lang === "en"
+                ? "NOBLE HOOK • RIVER FISHING • PREMIUM GEAR • PROFESSIONAL CHOICE •"
+                : "NOBLE HOOK • WĘDKARSTWO RZECZNE • SPRZĘT PREMIUM • PROFESJONALNY WYBÓR •";
+        });
+
+
+        const footerTitles = document.querySelectorAll(".footer-col h4");
+
+        if (footerTitles[0]) footerTitles[0].textContent = t.clients;
+        if (footerTitles[1]) footerTitles[1].textContent = t.social;
+        if (footerTitles[2]) footerTitles[2].textContent = t.subscription;
+
+        const footerDescriptionEl = document.querySelector(".footer-col p");
+        if (footerDescriptionEl)
+          footerDescriptionEl.textContent = t.footerDescription;
+
+        // На сторінці лише одне посилання в "Клієнтам" — "Оплата і доставка".
+        const footerLinks = document.querySelectorAll(".footer-col ul li a");
+        if (footerLinks[0]) footerLinks[0].textContent = t.delivery;
+
+        const footerInputEl = document.querySelector(".footer-input");
+        if (footerInputEl) footerInputEl.placeholder = t.email;
+
+        const subscribeButtonEl = document.querySelector(
+          ".footer-col form .btn",
+        );
+        if (subscribeButtonEl) subscribeButtonEl.textContent = t.subscribe;
+
+        const footerBottomEl = document.querySelector(".footer-bottom");
+        if (footerBottomEl) footerBottomEl.textContent = t.footerBottom;
+
+        document.querySelectorAll(".lang-btn").forEach((button) => {
+          button.classList.toggle("active", button.dataset.lang === lang);
+        });
+
+
+        document.body.classList.remove("lang-changing");
+
+        void document.body.offsetWidth;
+
+        document.body.classList.add("lang-changing");
+
+
+        try {
+          localStorage.setItem("nobleHookLanguage", lang);
+        } catch (e) {}
+
+
+        translateCart(lang);
+      }
+
+
+
+      function translateCart(lang) {
+        const cartLabel = document.querySelector(".nh-cart-label");
+        if (cartLabel) {
+          cartLabel.textContent =
+            lang === "ua" ? "Кошик" : lang === "en" ? "Cart" : "Koszyk";
+        }
+
+        const cartTitle = document.querySelector(".nh-cart-header h2");
+        if (cartTitle) {
+          cartTitle.textContent =
+            lang === "ua"
+              ? "🛒 Ваш кошик"
+              : lang === "en"
+                ? "🛒 Your Cart"
+                : "🛒 Twój koszyk";
+        }
+
+        const totalLabel = document.querySelector(".nh-cart-total span");
+        if (totalLabel) {
+          totalLabel.textContent =
+            lang === "ua" ? "Разом" : lang === "en" ? "Total" : "Razem";
+        }
+
+        const checkoutButton = document.querySelector("#nhCheckout");
+        if (checkoutButton) {
+          checkoutButton.textContent =
+            lang === "ua"
+              ? "ОФОРМИТИ ЗАМОВЛЕННЯ"
+              : lang === "en"
+                ? "CHECKOUT"
+                : "ZŁÓŻ ZAMÓWIENIE";
+        }
+
+        const clearButton = document.querySelector("#nhClearCart");
+        if (clearButton) {
+          clearButton.textContent =
+            lang === "ua"
+              ? "Очистити кошик"
+              : lang === "en"
+                ? "Clear Cart"
+                : "Wyczyść koszyk";
+        }
+
+        const checkoutTitle = document.querySelector(".nh-checkout-title h2");
+        if (checkoutTitle) {
+          checkoutTitle.textContent =
+            lang === "ua"
+              ? "Оформлення замовлення"
+              : lang === "en"
+                ? "Checkout"
+                : "Składanie zamówienia";
+        }
+
+        const checkoutDescription = document.querySelector(
+          ".nh-checkout-title p",
+        );
+        if (checkoutDescription) {
+          checkoutDescription.textContent =
+            lang === "ua"
+              ? "Заповніть дані для оформлення"
+              : lang === "en"
+                ? "Fill in your details to place the order"
+                : "Wypełnij dane, aby złożyć zamówienie";
+        }
+
+        const labels = document.querySelectorAll("#nhCheckoutForm label");
+
+        if (labels[0])
+          labels[0].childNodes[0].textContent =
+            lang === "ua" ? "Ім'я" : lang === "en" ? "Name" : "Imię";
+        if (labels[1])
+          labels[1].childNodes[0].textContent =
+            lang === "ua" ? "Телефон" : lang === "en" ? "Phone" : "Telefon";
+        if (labels[2]) labels[2].childNodes[0].textContent = "Email";
+        if (labels[3])
+          labels[3].childNodes[0].textContent =
+            lang === "ua"
+              ? "Спосіб доставки"
+              : lang === "en"
+                ? "Delivery Method"
+                : "Sposób dostawy";
+        if (labels[4])
+          labels[4].childNodes[0].textContent =
+            lang === "ua"
+              ? "Коментар"
+              : lang === "en"
+                ? "Comment"
+                : "Komentarz";
+
+        const nameInput = document.querySelector("#nhName");
+        if (nameInput) {
+          nameInput.placeholder =
+            lang === "ua"
+              ? "Ваше ім'я"
+              : lang === "en"
+                ? "Your name"
+                : "Twoje imię";
+        }
+
+        const commentInput = document.querySelector("#nhComment");
+        if (commentInput) {
+          commentInput.placeholder =
+            lang === "ua"
+              ? "Додатковий коментар..."
+              : lang === "en"
+                ? "Additional comment..."
+                : "Dodatkowy komentarz...";
+        }
+
+        const delivery = document.querySelector("#nhDelivery");
+        if (delivery) {
+          const options = delivery.querySelectorAll("option");
+
+          if (options[0]) {
+            options[0].textContent =
+              lang === "ua"
+                ? "Оберіть спосіб доставки"
+                : lang === "en"
+                  ? "Choose delivery method"
+                  : "Wybierz sposób dostawy";
+          }
+
+          if (options[1]) {
+            options[1].textContent =
+              lang === "ua"
+                ? "Нова Пошта"
+                : lang === "en"
+                  ? "Nova Poshta"
+                  : "Nova Poshta";
+          }
+
+          if (options[2]) {
+            options[2].textContent =
+              lang === "ua"
+                ? "Укрпошта"
+                : lang === "en"
+                  ? "Ukrposhta"
+                  : "Ukrposhta";
+          }
+
+          if (options[3]) {
+            options[3].textContent =
+              lang === "ua"
+                ? "Самовивіз"
+                : lang === "en"
+                  ? "Pickup"
+                  : "Odbiór osobisty";
+          }
+        }
+
+        const formTotal = document.querySelector(".nh-form-summary span");
+        if (formTotal) {
+          formTotal.textContent =
+            lang === "ua"
+              ? "Сума замовлення"
+              : lang === "en"
+                ? "Order Total"
+                : "Suma zamówienia";
+        }
+
+        const finishButton = document.querySelector(".nh-finish-button");
+        if (finishButton) {
+          finishButton.textContent =
+            lang === "ua"
+              ? "ПІДТВЕРДИТИ ЗАМОВЛЕННЯ"
+              : lang === "en"
+                ? "CONFIRM ORDER"
+                : "POTWIERDŹ ZAMÓWIENIE";
+        }
+
+        const successTitle = document.querySelector(".nh-success-box h2");
+        if (successTitle) {
+          successTitle.textContent =
+            lang === "ua"
+              ? "Замовлення сформовано!"
+              : lang === "en"
+                ? "Order Created!"
+                : "Zamówienie zostało utworzone!";
+        }
+
+        const successText = document.querySelector(".nh-success-text");
+        if (successText) {
+          successText.innerHTML =
+            lang === "ua"
+              ? "Дякуємо за покупку в <strong>Noble Hook</strong>"
+              : lang === "en"
+                ? "Thank you for shopping at <strong>Noble Hook</strong>"
+                : "Dziękujemy za zakup w <strong>Noble Hook</strong>";
+        }
+
+        const orderNumberLabel = document.querySelector(
+          ".nh-order-number small",
+        );
+        if (orderNumberLabel) {
+          orderNumberLabel.textContent =
+            lang === "ua"
+              ? "НОМЕР ЗАМОВЛЕННЯ"
+              : lang === "en"
+                ? "ORDER NUMBER"
+                : "NUMER ZAMÓWIENIA";
+        }
+
+        const successTotal = document.querySelector(".nh-success-total span");
+        if (successTotal) {
+          successTotal.textContent =
+            lang === "ua" ? "Разом" : lang === "en" ? "Total" : "Razem";
+        }
+
+        const warning = document.querySelector(".nh-success-warning p");
+        if (warning) {
+          warning.innerHTML =
+            lang === "ua"
+              ? "Натисніть <strong>«Скопіювати замовлення»</strong>, потім відкрийте Instagram та надішліть нам скопійований текст."
+              : lang === "en"
+                ? "Click <strong>“Copy Order”</strong>, then open Instagram and send us the copied text."
+                : "Kliknij <strong>„Kopiuj zamówienie”</strong>, następnie otwórz Instagram i wyślij nam skopiowany tekst.";
+        }
+
+        const copyButton = document.querySelector("#nhCopyOrder");
+        if (copyButton) {
+          copyButton.textContent =
+            lang === "ua"
+              ? "📋 Скопіювати замовлення"
+              : lang === "en"
+                ? "📋 Copy Order"
+                : "📋 Kopiuj zamówienie";
+        }
+
+        const instagramButton = document.querySelector("#nhInstagram");
+        if (instagramButton) {
+          instagramButton.textContent =
+            lang === "ua"
+              ? "📸 Написати в Instagram"
+              : lang === "en"
+                ? "📸 Message on Instagram"
+                : "📸 Napisz na Instagramie";
+        }
+
+        const continueButton = document.querySelector("#nhContinue");
+        if (continueButton) {
+          continueButton.textContent =
+            lang === "ua"
+              ? "🛒 Продовжити покупки"
+              : lang === "en"
+                ? "🛒 Continue Shopping"
+                : "🛒 Kontynuuj zakupy";
+        }
+
+        const emptyTitle = document.querySelector(".nh-empty-cart h3");
+        if (emptyTitle) {
+          emptyTitle.textContent =
+            lang === "ua"
+              ? "Кошик порожній"
+              : lang === "en"
+                ? "Your cart is empty"
+                : "Twój koszyk jest pusty";
+        }
+
+        const emptyText = document.querySelector(".nh-empty-cart p");
+        if (emptyText) {
+          emptyText.textContent =
+            lang === "ua"
+              ? "Додайте товари з магазину"
+              : lang === "en"
+                ? "Add products from the shop"
+                : "Dodaj produkty ze sklepu";
+        }
+      }
+
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          changeLanguage(button.dataset.lang);
+        });
+      });
+
+
+      changeLanguage(currentLanguage);
+
+
+      const subscribeForm = document.querySelector("footer form");
+
+      if (subscribeForm) {
+        subscribeForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          alert(translations[currentLanguage].subscribed);
+          subscribeForm.reset();
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        "use strict";
+
+
+        const INSTAGRAM_URL = "https://www.instagram.com/noblehook.ua/";
+
+
+
+        const $ = (selector) => document.querySelector(selector);
+
+        const $$ = (selector) => document.querySelectorAll(selector);
+
+        const escapeHTML = (text) =>
+          String(text ?? "").replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;",
+              })[c],
+          );
+
+        const getNumber = (value) => {
+          if (typeof value === "number") {
+            return Number.isFinite(value) ? value : 0;
+          }
+
+          const number = parseFloat(
+            String(value)
+              .replace(/\s/g, "")
+              .replace(",", ".")
+              .replace(/[^\d.-]/g, ""),
+          );
+
+          return Number.isFinite(number) ? number : 0;
+        };
+
+        const formatPrice = (price) => {
+          return `${Number(price || 0).toLocaleString("uk-UA")} ₴`;
+        };
+
+
+        let cart = [];
+
+        try {
+          const savedCart = localStorage.getItem("nobleHookCart");
+
+          if (savedCart) {
+            const parsed = JSON.parse(savedCart);
+
+            if (Array.isArray(parsed)) {
+              cart = parsed;
+            }
+          }
+        } catch (error) {
+          console.error("Помилка завантаження кошика:", error);
+          cart = [];
+        }
+
+        cart = cart
+          .filter((item) => item && item.name)
+          .map((item) => ({
+            id: item.id || item.name,
+            name: String(item.name),
+            price: getNumber(item.price),
+            img: item.img || "",
+            qty: Math.max(1, parseInt(item.qty, 10) || 1),
+          }));
+
+
+        function saveCart() {
+          try {
+            localStorage.setItem("nobleHookCart", JSON.stringify(cart));
+          } catch (error) {
+            console.error("Не вдалося зберегти кошик:", error);
+          }
+
+          updateCart();
+        }
+
+
+        function createCartInterface() {
+          if ($("#nhCartButton")) {
+            return;
+          }
+
+          document.body.insertAdjacentHTML(
+            "beforeend",
+            `
+        <button id="nhCartButton" class="nh-cart-button" type="button" aria-label="Відкрити кошик">
+          <span class="nh-cart-icon">🛒</span>
+          <span class="nh-cart-label">Кошик</span>
+          <span id="nhCartCount" class="nh-cart-count">0</span>
+        </button>
+
+        <div id="nhCartOverlay" class="nh-cart-overlay"></div>
+
+        <aside id="nhCartPanel" class="nh-cart-panel">
+          <div class="nh-cart-header">
+            <div>
+              <h2>🛒 Ваш кошик</h2>
+              <span id="nhCartItemsCount">0 товарів</span>
+            </div>
+            <button id="nhCartClose" class="nh-cart-close" type="button">×</button>
+          </div>
+
+          <div id="nhCartItems" class="nh-cart-items"></div>
+
+          <div class="nh-cart-footer">
+            <div class="nh-cart-total">
+              <span>Разом</span>
+              <strong id="nhCartTotal">0 ₴</strong>
+            </div>
+            <button id="nhCheckout" class="nh-checkout-button" type="button">ОФОРМИТИ ЗАМОВЛЕННЯ</button>
+            <button id="nhClearCart" class="nh-clear-button" type="button">Очистити кошик</button>
+          </div>
+        </aside>
+
+        <div id="nhCheckoutModal" class="nh-modal">
+          <div class="nh-checkout-box">
+            <button id="nhCheckoutClose" class="nh-modal-close" type="button">×</button>
+
+            <div class="nh-checkout-title">
+              <div class="nh-checkout-icon">📦</div>
+              <h2>Оформлення замовлення</h2>
+              <p>Заповніть дані для оформлення</p>
+            </div>
+
+            <form id="nhCheckoutForm">
+              <label>
+                Ім'я
+                <input id="nhName" type="text" placeholder="Ваше ім'я" autocomplete="name" required />
+              </label>
+
+              <label>
+                Телефон
+                <input id="nhPhone" type="tel" placeholder="+380..." autocomplete="tel" required />
+              </label>
+
+              <label>
+                Email
+                <input id="nhEmail" type="email" placeholder="example@email.com" autocomplete="email" required />
+              </label>
+
+              <label>
+                Спосіб доставки
+                <select id="nhDelivery" required>
+                  <option value="">Оберіть спосіб доставки</option>
+                  <option value="Нова Пошта">Нова Пошта</option>
+                  <option value="Укрпошта">Укрпошта</option>
+                  <option value="Самовивіз">Самовивіз</option>
+                </select>
+              </label>
+
+              <label>
+                Коментар
+                <textarea id="nhComment" placeholder="Додатковий коментар..." rows="4"></textarea>
+              </label>
+
+              <div class="nh-form-summary">
+                <span>Сума замовлення</span>
+                <strong id="nhFormTotal">0 ₴</strong>
+              </div>
+
+              <button type="submit" class="nh-finish-button">ПІДТВЕРДИТИ ЗАМОВЛЕННЯ</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="nhSuccessModal" class="nh-modal">
+          <div class="nh-success-box">
+            <button id="nhSuccessClose" class="nh-modal-close" type="button">×</button>
+
+            <div class="nh-success-icon">✓</div>
+
+            <h2>Замовлення сформовано!</h2>
+
+            <p class="nh-success-text">Дякуємо за покупку в <strong>Noble Hook</strong></p>
+
+            <div class="nh-order-number">
+              <small>НОМЕР ЗАМОВЛЕННЯ</small>
+              <strong id="nhOrderNumber">NHL-00000</strong>
+            </div>
+
+            <div id="nhSuccessProducts" class="nh-success-products"></div>
+
+            <div class="nh-success-total">
+              <span>Разом</span>
+              <strong id="nhSuccessTotal">0 ₴</strong>
+            </div>
+
+            <div class="nh-success-warning">
+              <span>⚠️</span>
+              <p>Натисніть <strong>«Скопіювати замовлення»</strong>, потім відкрийте Instagram та надішліть нам скопійований текст.</p>
+            </div>
+
+            <button id="nhCopyOrder" class="nh-copy-button" type="button">📋 Скопіювати замовлення</button>
+            <button id="nhInstagram" class="nh-instagram-button" type="button">📸 Написати в Instagram</button>
+            <button id="nhContinue" class="nh-continue-button" type="button">🛒 Продовжити покупки</button>
+          </div>
+        </div>
+      `,
+          );
+        }
+
+
+        function createCartStyles() {
+          if ($("#nhCartStyles")) {
+            return;
+          }
+
+          const style = document.createElement("style");
+
+          style.id = "nhCartStyles";
+
+          style.textContent = `
+    .nh-cart-button {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 99990;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 20px;
+      border: 1px solid rgba(212,175,55,.45);
+      border-radius: 18px;
+      color: #080808;
+      background: linear-gradient(135deg, #d4af37, #f6d365);
+      font-family: "Poppins", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 15px 40px rgba(0,0,0,.45), 0 0 25px rgba(212,175,55,.18);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .nh-cart-button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.55), 0 0 35px rgba(212,175,55,.28);
+    }
+
+    .nh-cart-icon { font-size: 21px; }
+
+    .nh-cart-count {
+      min-width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 7px;
+      border-radius: 50px;
+      color: #fff;
+      background: #111;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .nh-cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 99991;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .nh-cart-overlay.active { opacity: 1; visibility: visible; }
+
+    .nh-cart-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 99992;
+      width: min(460px, 100%);
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(145deg, #101722, #070b11);
+      border-left: 1px solid rgba(212,175,55,.25);
+      box-shadow: -25px 0 70px rgba(0,0,0,.65);
+      transform: translateX(105%);
+      transition: transform .4s cubic-bezier(.25,.8,.25,1);
+    }
+
+    .nh-cart-panel.active { transform: translateX(0); }
+
+    .nh-cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nh-cart-header h2 {
+      margin: 0;
+      color: #fff;
+      font-family: "Montserrat", sans-serif;
+      font-size: 23px;
+    }
+
+    .nh-cart-header span {
+      display: block;
+      margin-top: 5px;
+      color: #788494;
+      font-size: 12px;
+    }
+
+    .nh-cart-close {
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255,255,255,.07);
+      font-size: 25px;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .nh-cart-close:hover {
+      background: rgba(212,175,55,.2);
+      transform: rotate(90deg);
+    }
+
+    .nh-cart-items { flex: 1; overflow-y: auto; padding: 20px; }
+
+    .nh-empty-cart {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #667384;
+      text-align: center;
+    }
+
+    .nh-empty-cart-icon { margin-bottom: 15px; font-size: 55px; opacity: .45; }
+
+    .nh-empty-cart h3 { margin-bottom: 6px; color: #cbd5e1; font-size: 18px; }
+
+    .nh-cart-item {
+      display: flex;
+      gap: 13px;
+      padding: 13px;
+      margin-bottom: 12px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: .25s;
+    }
+
+    .nh-cart-item:hover { border-color: rgba(212,175,55,.25); }
+
+    .nh-cart-item-image {
+      width: 75px;
+      height: 75px;
+      flex-shrink: 0;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #090d13;
+    }
+
+    .nh-cart-item-info { min-width: 0; flex: 1; }
+
+    .nh-cart-item-name {
+      margin-bottom: 5px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .nh-cart-item-price { margin-bottom: 10px; color: #d4af37; font-size: 14px; font-weight: 800; }
+
+    .nh-cart-item-controls { display: flex; align-items: center; gap: 9px; }
+
+    .nh-qty-button {
+      width: 29px;
+      height: 29px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      color: #fff;
+      background: rgba(255,255,255,.05);
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .nh-qty-button:hover { color: #000; background: #d4af37; }
+
+    .nh-qty-value { min-width: 22px; color: #fff; text-align: center; font-weight: 800; }
+
+    .nh-remove-button {
+      margin-left: auto;
+      border: none;
+      color: #8b96a6;
+      background: none;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    .nh-remove-button:hover { color: #ff5c5c; }
+
+    .nh-cart-footer {
+      padding: 22px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(4,6,10,.7);
+    }
+
+    .nh-cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 17px;
+      color: #cbd5e1;
+      font-size: 17px;
+    }
+
+    .nh-cart-total strong { color: #d4af37; font-family: "Montserrat", sans-serif; font-size: 25px; }
+
+    .nh-checkout-button, .nh-clear-button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .nh-checkout-button { color: #080808; background: linear-gradient(90deg, #d4af37, #f6d365); }
+
+    .nh-checkout-button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212,175,55,.22); }
+
+    .nh-clear-button { margin-top: 9px; color: #9aa5b5; background: rgba(255,255,255,.05); }
+
+    .nh-clear-button:hover { color: #ff7777; background: rgba(255,80,80,.08); }
+
+    .nh-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .nh-modal.active { opacity: 1; visibility: visible; }
+
+    .nh-checkout-box, .nh-success-box {
+      position: relative;
+      width: min(580px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 32px;
+      border-radius: 26px;
+      color: #fff;
+      background: linear-gradient(145deg, #121a27, #080d15);
+      border: 1px solid rgba(212,175,55,.4);
+      box-shadow: 0 30px 100px rgba(0,0,0,.7);
+      transform: translateY(25px) scale(.97);
+      transition: .35s;
+    }
+
+    .nh-modal.active .nh-checkout-box,
+    .nh-modal.active .nh-success-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .nh-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255,255,255,.07);
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .nh-modal-close:hover { background: rgba(212,175,55,.2); }
+
+    .nh-checkout-title { text-align: center; margin-bottom: 25px; }
+
+    .nh-checkout-icon { font-size: 45px; margin-bottom: 8px; }
+
+    .nh-checkout-title h2 { margin: 0; font-family: "Montserrat", sans-serif; }
+
+    .nh-checkout-title p { margin-top: 7px; color: #818d9d; font-size: 13px; }
+
+    .nh-checkout-box label {
+      display: block;
+      margin-bottom: 15px;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nh-checkout-box input,
+    .nh-checkout-box select,
+    .nh-checkout-box textarea {
+      width: 100%;
+      margin-top: 7px;
+      padding: 14px 15px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px;
+      outline: none;
+      color: #fff;
+      background: rgba(255,255,255,.045);
+      font-family: inherit;
+      font-size: 16px;
+      transition: .25s;
+    }
+
+    .nh-checkout-box select option { color: #111; }
+
+    .nh-checkout-box input:focus,
+    .nh-checkout-box select:focus,
+    .nh-checkout-box textarea:focus {
+      border-color: rgba(212,175,55,.55);
+      box-shadow: 0 0 0 3px rgba(212,175,55,.07);
+    }
+
+    .nh-checkout-box textarea { resize: vertical; }
+
+    .nh-form-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      padding: 17px;
+      border-radius: 14px;
+      background: rgba(212,175,55,.07);
+      border: 1px solid rgba(212,175,55,.2);
+    }
+
+    .nh-form-summary strong { color: #d4af37; font-size: 20px; }
+
+    .nh-finish-button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 13px;
+      color: #090909;
+      background: linear-gradient(90deg, #d4af37, #f6d365);
+      font-weight: 900;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .nh-finish-button:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(212,175,55,.25); }
+
+    .nh-success-box { width: min(620px, 100%); }
+
+    .nh-success-icon {
+      width: 76px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      color: #111;
+      background: linear-gradient(135deg, #d4af37, #f6d365);
+      font-size: 42px;
+      font-weight: 900;
+      box-shadow: 0 0 35px rgba(212,175,55,.3);
+    }
+
+    .nh-success-box h2 { text-align: center; font-size: 26px; }
+
+    .nh-success-text { margin-top: 7px; color: #8792a1; text-align: center; }
+
+    .nh-success-text strong { color: #d4af37; }
+
+    .nh-order-number {
+      margin: 22px 0;
+      padding: 16px;
+      text-align: center;
+      border-radius: 15px;
+      background: rgba(212,175,55,.07);
+      border: 1px solid rgba(212,175,55,.25);
+    }
+
+    .nh-order-number small { display: block; margin-bottom: 5px; color: #7c8796; font-size: 10px; letter-spacing: 1.5px; }
+
+    .nh-order-number strong { color: #d4af37; font-size: 22px; }
+
+    .nh-success-products { display: flex; flex-direction: column; gap: 8px; }
+
+    .nh-success-product {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 13px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .nh-success-product img { width: 58px; height: 58px; object-fit: contain; border-radius: 9px; background: #090d13; }
+
+    .nh-success-product-info { flex: 1; min-width: 0; }
+
+    .nh-success-product-info strong { display: block; color: #fff; font-size: 13px; }
+
+    .nh-success-product-info span { display: block; margin-top: 4px; color: #7e8999; font-size: 12px; }
+
+    .nh-success-product-price { color: #d4af37; font-weight: 800; white-space: nowrap; }
+
+    .nh-success-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding: 16px 2px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      font-size: 18px;
+    }
+
+    .nh-success-total strong { color: #d4af37; font-size: 23px; }
+
+    .nh-success-warning {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 14px;
+      background: rgba(212,175,55,.07);
+      border: 1px solid rgba(212,175,55,.2);
+      color: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .nh-success-warning strong { color: #d4af37; }
+
+    .nh-copy-button, .nh-instagram-button, .nh-continue-button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 15px;
+      border: none;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .nh-copy-button:hover, .nh-instagram-button:hover, .nh-continue-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .nh-copy-button { color: #111; background: linear-gradient(135deg, #d4af37, #f6d365); }
+
+    .nh-instagram-button { color: #fff; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+
+    .nh-continue-button { color: #fff; background: rgba(255,255,255,.07); }
+
+    @media (max-width: 600px) {
+      .nh-cart-button { right: 15px; bottom: 15px; padding: 13px 16px; border-radius: 15px; }
+      .nh-cart-label { display: none; }
+      .nh-cart-panel { width: 100%; }
+      .nh-cart-header { padding: 18px 16px; }
+      .nh-cart-items { padding: 14px; }
+      .nh-cart-footer { padding: 16px; }
+      .nh-modal { padding: 12px; }
+      .nh-checkout-box, .nh-success-box { padding: 23px 18px; border-radius: 21px; }
+      .nh-success-box h2 { font-size: 21px; }
+      .nh-success-product img { width: 50px; height: 50px; }
+    }
+  `;
+
+          document.head.appendChild(style);
+        }
+
+
+        function openCart() {
+          $("#nhCartPanel")?.classList.add("active");
+          $("#nhCartOverlay")?.classList.add("active");
+
+          document.body.style.overflow = "hidden";
+
+          updateCart();
+        }
+
+        function closeCart() {
+          $("#nhCartPanel")?.classList.remove("active");
+          $("#nhCartOverlay")?.classList.remove("active");
+
+          document.body.style.overflow = "";
+        }
+
+
+        function openCheckout() {
+          if (!cart.length) {
+            alert(
+              currentLanguage === "en"
+                ? "Your cart is empty."
+                : currentLanguage === "pl"
+                  ? "Twój koszyk jest pusty."
+                  : "Кошик порожній.",
+            );
+            return;
+          }
+
+          closeCart();
+
+          updateCheckoutTotal();
+
+          $("#nhCheckoutModal")?.classList.add("active");
+
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeCheckout() {
+          $("#nhCheckoutModal")?.classList.remove("active");
+
+          document.body.style.overflow = "";
+        }
+
+        function openSuccess() {
+          $("#nhSuccessModal")?.classList.add("active");
+
+          document.body.style.overflow = "hidden";
+        }
+
+        function closeSuccess() {
+          $("#nhSuccessModal")?.classList.remove("active");
+
+          document.body.style.overflow = "";
+        }
+
+
+        function updateCart() {
+          const countElement = $("#nhCartCount");
+          const itemsCountElement = $("#nhCartItemsCount");
+          const itemsElement = $("#nhCartItems");
+          const totalElement = $("#nhCartTotal");
+
+          if (!countElement || !itemsElement || !totalElement) {
+            return;
+          }
+
+          const totalQuantity = cart.reduce((sum, item) => sum + item.qty, 0);
+
+          const totalPrice = cart.reduce(
+            (sum, item) => sum + item.price * item.qty,
+            0,
+          );
+
+          countElement.textContent = totalQuantity;
+
+          if (itemsCountElement) {
+            let itemWord;
+
+            if (currentLanguage === "en") {
+              itemWord = totalQuantity === 1 ? "item" : "items";
+            } else if (currentLanguage === "pl") {
+              itemWord =
+                totalQuantity === 1
+                  ? "produkt"
+                  : totalQuantity >= 2 && totalQuantity <= 4
+                    ? "produkty"
+                    : "produktów";
+            } else {
+              itemWord =
+                totalQuantity === 1
+                  ? "товар"
+                  : totalQuantity >= 2 && totalQuantity <= 4
+                    ? "товари"
+                    : "товарів";
+            }
+
+            itemsCountElement.textContent = `${totalQuantity} ${itemWord}`;
+          }
+
+          totalElement.textContent = formatPrice(totalPrice);
+
+          if (!cart.length) {
+            itemsElement.innerHTML = `
+        <div class="nh-empty-cart">
+          <div class="nh-empty-cart-icon">🛒</div>
+          <h3>${
+            currentLanguage === "en"
+              ? "Your cart is empty"
+              : currentLanguage === "pl"
+                ? "Twój koszyk jest pusty"
+                : "Кошик порожній"
+          }</h3>
+          <p>${
+            currentLanguage === "en"
+              ? "Add products from the shop"
+              : currentLanguage === "pl"
+                ? "Dodaj produkty ze sklepu"
+                : "Додайте товари з магазину"
+          }</p>
+        </div>
+      `;
+
+            return;
+          }
+
+          itemsElement.innerHTML = cart
+            .map((item, index) => {
+              const itemTotal = item.price * item.qty;
+
+              return `
+          <div class="nh-cart-item" data-index="${index}">
+            <img class="nh-cart-item-image" src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" onerror="this.style.display='none'">
+
+            <div class="nh-cart-item-info">
+              <div class="nh-cart-item-name">${escapeHTML(item.name)}</div>
+              <div class="nh-cart-item-price">${formatPrice(itemTotal)}</div>
+
+              <div class="nh-cart-item-controls">
+                <button class="nh-qty-button" type="button" data-action="minus" data-index="${index}">−</button>
+                <span class="nh-qty-value">${item.qty}</span>
+                <button class="nh-qty-button" type="button" data-action="plus" data-index="${index}">+</button>
+                <button class="nh-remove-button" type="button" data-action="remove" data-index="${index}" title="Видалити">🗑</button>
+              </div>
+            </div>
+          </div>
+        `;
+            })
+            .join("");
+        }
+
+        function updateCheckoutTotal() {
+          const total = cart.reduce(
+            (sum, item) => sum + item.price * item.qty,
+            0,
+          );
+
+          if ($("#nhFormTotal")) {
+            $("#nhFormTotal").textContent = formatPrice(total);
+          }
+        }
+
+
+        function addProduct(button) {
+          const card = button.closest(".product-table");
+
+          if (!card) {
+            console.error("Не знайдено .product-table");
+
+            return;
+          }
+
+          const nameElement = card.querySelector(".product-title");
+          const priceElement = card.querySelector(".product-price");
+          const imageElement = card.querySelector(".product-image img");
+
+          if (!nameElement || !priceElement || !imageElement) {
+            alert("Не вдалося отримати дані товару.");
+
+            return;
+          }
+
+          const name = nameElement.textContent.trim();
+          const price = getNumber(priceElement.textContent);
+          const img = imageElement.getAttribute("src") || "";
+
+          if (!name || price <= 0) {
+            alert("Помилка даних товару.");
+
+            return;
+          }
+
+          const existing = cart.find((item) => item.name === name);
+
+          if (existing) {
+            existing.qty += 1;
+          } else {
+            cart.push({
+              id: Date.now().toString(),
+              name,
+              price,
+              img,
+              qty: 1,
+            });
+          }
+
+          saveCart();
+
+          const originalText = button.textContent;
+
+          button.textContent =
+            currentLanguage === "en"
+              ? "✓ Added"
+              : currentLanguage === "pl"
+                ? "✓ Dodano"
+                : "✓ Додано";
+          button.style.transform = "translateY(-3px)";
+
+          setTimeout(() => {
+            button.textContent = originalText;
+
+            button.style.transform = "";
+          }, 1200);
+
+          setTimeout(() => {
+            openCart();
+          }, 250);
+        }
+
+
+        function changeQuantity(index, amount) {
+          if (!cart[index]) {
+            return;
+          }
+
+          cart[index].qty += amount;
+
+          if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+          }
+
+          saveCart();
+
+          updateCheckoutTotal();
+        }
+
+
+        function removeItem(index) {
+          if (!cart[index]) {
+            return;
+          }
+
+          cart.splice(index, 1);
+
+          saveCart();
+
+          updateCheckoutTotal();
+        }
+
+
+
+        function clearCart() {
+          if (!cart.length) {
+            return;
+          }
+
+          const confirmed = confirm(
+            currentLanguage === "en"
+              ? "Clear the whole cart?"
+              : currentLanguage === "pl"
+                ? "Wyczyścić cały koszyk?"
+                : "Очистити весь кошик?",
+          );
+
+          if (!confirmed) {
+            return;
+          }
+
+          cart = [];
+
+          saveCart();
+
+          updateCheckoutTotal();
+        }
+
+
+        function generateOrderNumber() {
+          const random = Math.floor(Math.random() * 90000) + 10000;
+
+          return `NHL-${random}`;
+        }
+
+
+
+        function createOrderText(order) {
+          const productsText = order.products
+            .map(
+              (item) =>
+                `• ${item.name} × ${item.qty} — ${formatPrice(item.price * item.qty)}`,
+            )
+            .join("\n");
+
+          return `🪝 NOBLE HOOK
+
+📦 НОВЕ ЗАМОВЛЕННЯ
+
+Номер: ${order.number}
+
+👤 Покупець:
+${order.customer.name}
+
+📱 Телефон:
+${order.customer.phone}
+
+📧 Email:
+${order.customer.email}
+
+━━━━━━━━━━━━━━━━
+
+🎣 ТОВАРИ:
+
+${productsText}
+
+━━━━━━━━━━━━━━━━
+
+💰 СУМА:
+${formatPrice(order.total)}
+
+🚚 ДОСТАВКА:
+${order.customer.delivery}
+
+📝 КОМЕНТАР:
+${order.customer.comment || "Немає"}
+
+━━━━━━━━━━━━━━━━
+
+📅 ${order.date}`;
+        }
+
+
+        function showOrderSuccess(order) {
+          $("#nhOrderNumber").textContent = order.number;
+
+          $("#nhSuccessTotal").textContent = formatPrice(order.total);
+
+          const productsContainer = $("#nhSuccessProducts");
+
+          productsContainer.innerHTML = order.products
+            .map(
+              (item) => `
+          <div class="nh-success-product">
+            <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}" onerror="this.style.display='none'">
+
+            <div class="nh-success-product-info">
+              <strong>${escapeHTML(item.name)}</strong>
+              <span>${item.qty} × ${formatPrice(item.price)}</span>
+            </div>
+
+            <div class="nh-success-product-price">${formatPrice(item.price * item.qty)}</div>
+          </div>
+        `,
+            )
+            .join("");
+
+          window.nobleHookCurrentOrder = order;
+
+          openSuccess();
+        }
+
+        function finishOrder() {
+          const name = $("#nhName")?.value.trim();
+          const phone = $("#nhPhone")?.value.trim();
+          const email = $("#nhEmail")?.value.trim();
+          const delivery = $("#nhDelivery")?.value;
+          const comment = $("#nhComment")?.value.trim();
+
+          if (!name) {
+            alert("Введіть ім'я.");
+            $("#nhName")?.focus();
+            return;
+          }
+
+          if (!phone) {
+            alert("Введіть номер телефону.");
+            $("#nhPhone")?.focus();
+            return;
+          }
+
+          if (!email) {
+            alert("Введіть Email.");
+            $("#nhEmail")?.focus();
+            return;
+          }
+
+          if (!delivery) {
+            alert("Оберіть спосіб доставки.");
+            $("#nhDelivery")?.focus();
+            return;
+          }
+
+          if (!cart.length) {
+            alert("Кошик порожній.");
+            closeCheckout();
+            return;
+          }
+
+          const total = cart.reduce(
+            (sum, item) => sum + item.price * item.qty,
+            0,
+          );
+
+          const orderNumber = generateOrderNumber();
+
+          const order = {
+            number: orderNumber,
+
+            customer: {
+              name,
+              phone,
+              email,
+              delivery,
+              comment,
+            },
+
+            products: cart.map((item) => ({ ...item })),
+
+            total,
+
+            date: new Date().toLocaleString("uk-UA"),
+
+            status: "Очікує підтвердження",
+          };
+
+          let orders = [];
+
+          try {
+            const savedOrders = localStorage.getItem("nobleHookOrders");
+
+            if (savedOrders) {
+              const parsed = JSON.parse(savedOrders);
+
+              if (Array.isArray(parsed)) {
+                orders = parsed;
+              }
+            }
+          } catch (error) {
+            console.error("Помилка завантаження замовлень:", error);
+          }
+
+          orders.push(order);
+
+          try {
+            localStorage.setItem("nobleHookOrders", JSON.stringify(orders));
+          } catch (error) {
+            console.error("Помилка збереження замовлення:", error);
+          }
+
+          order.orderText = createOrderText(order);
+
+          closeCheckout();
+
+          showOrderSuccess(order);
+
+          cart = [];
+
+          saveCart();
+
+          $("#nhCheckoutForm")?.reset();
+        }
+
+
+        async function copyOrder() {
+          const order = window.nobleHookCurrentOrder;
+
+          if (!order) {
+            return;
+          }
+
+          const text = order.orderText || createOrderText(order);
+
+          const button = $("#nhCopyOrder");
+
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              const textarea = document.createElement("textarea");
+
+              textarea.value = text;
+
+              textarea.style.position = "fixed";
+
+              textarea.style.opacity = "0";
+
+              document.body.appendChild(textarea);
+
+              textarea.focus();
+              textarea.select();
+
+              document.execCommand("copy");
+
+              textarea.remove();
+            }
+
+            if (button) {
+              button.textContent =
+                currentLanguage === "en"
+                  ? "✅ Copied!"
+                  : currentLanguage === "pl"
+                    ? "✅ Skopiowano!"
+                    : "✅ Скопійовано!";
+            }
+
+            setTimeout(() => {
+              if (button) {
+                button.textContent =
+                  currentLanguage === "en"
+                    ? "📋 Copy Order"
+                    : currentLanguage === "pl"
+                      ? "📋 Kopiuj zamówienie"
+                      : "📋 Скопіювати замовлення";
+              }
+            }, 2500);
+          } catch (error) {
+            console.error("Помилка копіювання:", error);
+
+            alert("Не вдалося скопіювати замовлення.");
+          }
+        }
+
+
+        function openInstagram() {
+          window.open(INSTAGRAM_URL, "_blank", "noopener,noreferrer");
+        }
+
+
+        createCartInterface();
+
+        createCartStyles();
+
+        $$(".product-btn").forEach((button) => {
+          button.addEventListener("click", () => {
+            addProduct(button);
+          });
+        });
+
+        $("#nhCartButton")?.addEventListener("click", openCart);
+
+        $("#nhCartClose")?.addEventListener("click", closeCart);
+
+        $("#nhCartOverlay")?.addEventListener("click", closeCart);
+
+        $("#nhCheckout")?.addEventListener("click", openCheckout);
+
+        $("#nhClearCart")?.addEventListener("click", clearCart);
+
+        $("#nhCheckoutClose")?.addEventListener("click", closeCheckout);
+
+        $("#nhCheckoutForm")?.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          finishOrder();
+        });
+
+        $("#nhSuccessClose")?.addEventListener("click", closeSuccess);
+
+        $("#nhContinue")?.addEventListener("click", closeSuccess);
+
+        $("#nhCopyOrder")?.addEventListener("click", copyOrder);
+
+        $("#nhInstagram")?.addEventListener("click", openInstagram);
+
+        $("#nhCartItems")?.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-action]");
+
+          if (!button) {
+            return;
+          }
+
+          const index = parseInt(button.dataset.index, 10);
+
+          const action = button.dataset.action;
+
+          if (Number.isNaN(index)) {
+            return;
+          }
+
+          if (action === "plus") {
+            changeQuantity(index, 1);
+          }
+
+          if (action === "minus") {
+            changeQuantity(index, -1);
+          }
+
+          if (action === "remove") {
+            removeItem(index);
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape") {
+            return;
+          }
+
+          closeCart();
+          closeCheckout();
+          closeSuccess();
+        });
+
+        translateCart(currentLanguage);
+
+        updateCart();
+
+        updateCheckoutTotal();
+
+        console.log("🪝 Noble Hook Cart System запущено!");
+      });
+    </script>
+  </body>
+</html>
